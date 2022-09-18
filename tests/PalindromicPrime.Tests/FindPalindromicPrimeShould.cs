@@ -13,7 +13,7 @@ public class FindPalindromicPrimeShould
     [InlineData("981030374210301", 5, "10301")]
     public void FindPalindromicPrime(string number, int digits, string expected)
     {
-        string result = PalindromicPrimeNumber.Find(number, digits);
+        string result = PalindromicPrimeNumber.Find(number, digits, new Progress<long>());
         Assert.Equal(expected, result);
     }
 

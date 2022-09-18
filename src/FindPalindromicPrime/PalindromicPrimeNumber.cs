@@ -2,7 +2,7 @@
 
 public class PalindromicPrimeNumber
 {
-    public static string Find(string number, int digits)
+    public static string Find(string number, int digits, IProgress<long> progress)
     {
         for (int i = 0; i < number.Length - digits + 1; i++)
         {
@@ -10,6 +10,8 @@ public class PalindromicPrimeNumber
             {
                 return palindromicPrime;
             }
+
+            progress.Report(i);
         }
 
         return string.Empty;

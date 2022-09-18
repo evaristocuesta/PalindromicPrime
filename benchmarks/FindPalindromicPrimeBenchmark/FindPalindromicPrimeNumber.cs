@@ -15,13 +15,13 @@ public class FindPalindromicPrimeNumber
     [GlobalSetup]
     public void Setup()
     {
-        Number = Spigot.GetPiDecimals().TakeToString(Digits);
+        Number = Spigot.GetPiDecimals(new Progress<long>()).TakeToString(Digits);
     }
 
     [Benchmark]
     public string Find()
     {
-        return PalindromicPrimeNumber.Find(Number, 9);
+        return PalindromicPrimeNumber.Find(Number, 9, new Progress<long>());
     }
 
     [Benchmark]

@@ -4,8 +4,9 @@ namespace JGSpigotPiDecimals;
 
 public class Spigot
 {
-    public static IEnumerable<ulong> GetPiDecimals()
+    public static IEnumerable<ulong> GetPiDecimals(IProgress<long> progress)
     {
+        long numDigitsYield = 0;
         BigInteger
           k = 1,
           l = 3,
@@ -25,6 +26,8 @@ public class Spigot
 
             if (4 * q + r - t < tn)
             {
+                numDigitsYield++;
+                progress?.Report(numDigitsYield);
                 yield return (uint)n;
                 nr = 10 * (r - tn);
                 n = 10 * (3 * q + r) / t - 10 * n;

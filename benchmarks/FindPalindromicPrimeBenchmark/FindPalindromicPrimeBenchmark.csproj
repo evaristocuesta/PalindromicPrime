@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Extensions\Extensions.csproj" />
+    <ProjectReference Include="..\..\src\Extensions\Extensions.csproj" />
     <ProjectReference Include="..\..\src\FindPalindromicPrime\FindPalindromicPrime.csproj" />
     <ProjectReference Include="..\..\src\JGSpigotPiDecimals\JGSpigotPiDecimals.csproj" />
   </ItemGroup>
