@@ -6,12 +6,9 @@ public class PalindromicPrimeNumber
     {
         for (int i = 0; i < number.Length - digits + 1; i++)
         {
-            var subNumber = number.Substring(i, digits);
-            ulong.TryParse(subNumber, out ulong result);
-
-            if (PalindromicNumber.IsPalindrome(subNumber) && PrimeNumber.IsPrimeNumber(result))
+            if (HasPalindromicPrime(number, digits, i, out string palindromicPrime))
             {
-                return subNumber;
+                return palindromicPrime;
             }
         }
 
@@ -20,19 +17,32 @@ public class PalindromicPrimeNumber
 
     public static string FindParallel(string number, int digits)
     {
-        var palindromes = new List<string>();
+        string result = string.Empty;
 
         Parallel.For(0, number.Length - digits, i =>
         {
-            var subNumber = number.Substring(i, digits);
-            ulong.TryParse(subNumber, out ulong result);
-
-            if (PalindromicNumber.IsPalindrome(subNumber)) // && PrimeNumber.IsPrimeNumber(result))
+            if (HasPalindromicPrime(number, digits, i, out string palindromicPrime))
             {
-                palindromes.Add(subNumber);
+                result = palindromicPrime;
+                return;
             }
         });
 
-        return string.Empty;
+        return result;
+    }
+
+    private static bool HasPalindromicPrime(string number, int digits, int i, out string palindromicPrime)
+    {
+        palindromicPrime = string.Empty;
+        var subNumber = number.Substring(i, digits);
+        ulong.TryParse(subNumber, out ulong result);
+
+        if (PalindromicNumber.IsPalindrome(subNumber) && PrimeNumber.IsPrimeNumber(result))
+        {
+            palindromicPrime = subNumber;
+            return true;
+        }
+
+        return false;
     }
 }
