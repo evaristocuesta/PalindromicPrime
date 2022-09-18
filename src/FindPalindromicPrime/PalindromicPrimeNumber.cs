@@ -19,7 +19,7 @@ public class PalindromicPrimeNumber
     {
         string result = string.Empty;
 
-        Parallel.For(0, number.Length - digits, i =>
+        Parallel.For(0, number.Length - digits + 1, i =>
         {
             if (HasPalindromicPrime(number, digits, i, out string palindromicPrime))
             {
