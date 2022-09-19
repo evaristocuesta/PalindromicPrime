@@ -1,10 +1,12 @@
 ﻿using Extensions;
 using FindPalindromicPrime;
 using JGSpigotPiDecimals;
-using System.Globalization;
+using static System.Net.Mime.MediaTypeNames;
 
 DateTime lastTimeProgressReported = DateTime.Now;
-const int DIGITS = 1000000;
+const int DIGITS = 200000;
+string path = $"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}/palindromic-prime-pi/";
+string file = $"pi-{DIGITS}.txt";
 
 var progressPi = new Progress<long>();
 progressPi.ProgressChanged += Progress_ProgressChanged;
@@ -16,9 +18,9 @@ var pi = GeneratePi(DIGITS, progressPi);
 
 FindPalindromicPrime(pi, 9, progressPalindromicPrime);
 
-static string GeneratePi(int digits, Progress<long> progressPi)
+string GeneratePi(int digits, Progress<long> progressPi)
 {
-    var pi = ReadPiFromFile(digits);
+    var pi = ReadPiFromFile(path);
 
     if (!string.IsNullOrEmpty(pi))
     {
@@ -29,19 +31,17 @@ static string GeneratePi(int digits, Progress<long> progressPi)
     Console.WriteLine($"Generating PI...{DateTime.Now.ToLongTimeString()}");
     pi = Spigot.GetPiDecimals(progressPi).TakeToString(digits);
     Console.Write($"\rGenerated {DIGITS} decimals of PI... - 100%");
-    SavePiToFile(DIGITS, pi);
+    SavePiToFile(path, pi);
     return pi;
 }
 
-static string ReadPiFromFile(int digits)
+string ReadPiFromFile(string path)
 {
-    string path = $"./pi-{digits}.txt";
-
-    if (File.Exists(path))
+    if (File.Exists($"{path}/{file}"))
     {
         try
         {
-            return File.ReadAllText(path);
+            return File.ReadAllText($"{path}/{file}");
         }
         catch
         {
@@ -52,13 +52,15 @@ static string ReadPiFromFile(int digits)
     return string.Empty;
 }
 
-static void SavePiToFile(int digits, string pi)
+void SavePiToFile(string path, string pi)
 {
-    string path = $"./pi-{digits}.txt";
-
     try
     {
-        File.WriteAllText(path, pi);
+        if (!Directory.Exists(path))
+        {
+            Directory.CreateDirectory(path);
+        }
+        File.WriteAllText($"{path}/{file}", pi);
     }
     catch
     {
@@ -66,7 +68,7 @@ static void SavePiToFile(int digits, string pi)
     }
 }
 
-static void FindPalindromicPrime(string pi, int digits, Progress<long> progressPalindromicPrime)
+void FindPalindromicPrime(string pi, int digits, Progress<long> progressPalindromicPrime)
 {
     Console.WriteLine($"\r\nFinding palindromic prime in PI...{DateTime.Now.ToLongTimeString()}");
     string palindromicPrime = PalindromicPrimeNumber.Find(pi, digits, progressPalindromicPrime);
