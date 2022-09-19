@@ -2,9 +2,9 @@
 
 namespace JGSpigotPiDecimals;
 
-public class Spigot
+public class Spigot : ISpigot
 {
-    public static IEnumerable<ulong> GetPiDecimals(IProgress<long> progress)
+    public IEnumerable<ulong> GetPiDecimals(IProgress<long> progress)
     {
         long numDigitsYield = 0;
         BigInteger

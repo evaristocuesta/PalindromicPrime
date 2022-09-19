@@ -13,7 +13,9 @@ public class FindPalindromicPrimeShould
     [InlineData("981030374210301", 5, "10301")]
     public void FindPalindromicPrime(string number, int digits, string expected)
     {
-        string result = PalindromicPrimeNumber.Find(number, digits, new Progress<long>());
+        IPalindromicPrimeNumber palindromicPrimeNumber =
+            new PalindromicPrimeNumber(new PrimeNumber(), new PalindromicNumber());
+        string result = palindromicPrimeNumber.Find(number, digits, new Progress<long>());
         Assert.Equal(expected, result);
     }
 
@@ -25,7 +27,9 @@ public class FindPalindromicPrimeShould
     [InlineData("981030374210301", 5, "10301")]
     public void FindPalindromicPrimeParallel(string number, int digits, string expected)
     {
-        string result = PalindromicPrimeNumber.FindParallel(number, digits);
+        IPalindromicPrimeNumber palindromicPrimeNumber =
+            new PalindromicPrimeNumber(new PrimeNumber(), new PalindromicNumber());
+        string result = palindromicPrimeNumber.FindParallel(number, digits);
         Assert.Equal(expected, result);
     }
 }

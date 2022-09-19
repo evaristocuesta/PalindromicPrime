@@ -19,8 +19,9 @@ public class SpigotShould
     public void GenerateDigitsCorrectly(int decimals)
     {
         StringBuilder pi = new();
+        ISpigot spigot = new Spigot();
 
-        foreach (var digit in Spigot.GetPiDecimals(new Progress<long>()).Take(decimals))
+        foreach (var digit in spigot.GetPiDecimals(new Progress<long>()).Take(decimals))
         {
             pi.Append(digit);
         }
@@ -39,8 +40,9 @@ public class SpigotShould
     public void Generate10FirstDigitsCorrectly(int decimals)
     {
         StringBuilder pi = new();
+        ISpigot spigot = new Spigot();
 
-        foreach (var digit in Spigot.GetPiDecimals(new Progress<long>()).Take(decimals))
+        foreach (var digit in spigot.GetPiDecimals(new Progress<long>()).Take(decimals))
         {
             pi.Append(digit);
         }
@@ -59,8 +61,9 @@ public class SpigotShould
     public void Generate10LastDigitsCorrectly(int decimals)
     {
         StringBuilder pi = new();
+        ISpigot spigot = new Spigot();
 
-        foreach (var digit in Spigot.GetPiDecimals(new Progress<long>()).Skip(PI_1500_DECIMALS.Length - decimals).Take(decimals))
+        foreach (var digit in spigot.GetPiDecimals(new Progress<long>()).Skip(PI_1500_DECIMALS.Length - decimals).Take(decimals))
         {
             pi.Append(digit);
         }

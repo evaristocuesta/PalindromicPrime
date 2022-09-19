@@ -1,8 +1,8 @@
 ﻿namespace FindPalindromicPrime;
 
-public class PalindromicNumber
+public class PalindromicNumber : IPalindromicNumber
 {
-    public static bool IsPalindrome(string number)
+    public bool IsPalindrome(string number)
     {
         for (int i = 0; i < number.Length / 2; i++)
         {

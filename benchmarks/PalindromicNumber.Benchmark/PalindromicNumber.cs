@@ -5,7 +5,7 @@ namespace PalindromicNumberBenchmark;
 public class PalindromicNumber
 {
     [Params("323", "2394862", "197363791")]
-    public string Number;
+    public string Number = string.Empty;
 
     [Benchmark]
     public bool IsPalindromicReversing()

@@ -1,8 +1,8 @@
 ﻿namespace FindPalindromicPrime;
 
-public class PrimeNumber
+public class PrimeNumber : IPrimeNumber
 {
-    public static bool IsPrimeNumber(ulong n)
+    public bool IsPrimeNumber(ulong n)
     {
         if (n == 2 || n == 3)
             return true;

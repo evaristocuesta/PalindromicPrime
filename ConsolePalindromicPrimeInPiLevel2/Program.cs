@@ -1,4 +1,4 @@
-﻿using ConsolePalindromicPrimeInPiLevel1;
+﻿using ConsolePalindromicPrimeInPiLevel2;
 using Microsoft.Extensions.DependencyInjection;
 
 var host = Startup.Initialize();
@@ -10,7 +10,7 @@ using (var serviceScope = host.Services.CreateScope())
     try
     {
         var service = services.GetRequiredService<IPalindromicPrimeInPi>();
-        var number = await service.FindAsync(200000, 9);
+        var number = await service.FindAsync(21);
         Console.WriteLine(number);
     }
     catch (Exception)

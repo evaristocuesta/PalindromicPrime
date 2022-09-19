@@ -1,8 +1,17 @@
 ﻿namespace FindPalindromicPrime;
 
-public class PalindromicPrimeNumber
+public class PalindromicPrimeNumber : IPalindromicPrimeNumber
 {
-    public static string Find(string number, int digits, IProgress<long> progress)
+    private readonly IPrimeNumber _primeNumber;
+    private readonly IPalindromicNumber _palindromicNumber;
+
+    public PalindromicPrimeNumber(IPrimeNumber primeNumber, IPalindromicNumber palindromicNumber)
+    {
+        _primeNumber = primeNumber;
+        _palindromicNumber = palindromicNumber;
+    }
+
+    public string Find(string number, int digits, IProgress<long> progress)
     {
         for (int i = 0; i < number.Length - digits + 1; i++)
         {
@@ -17,7 +26,7 @@ public class PalindromicPrimeNumber
         return string.Empty;
     }
 
-    public static string FindParallel(string number, int digits)
+    public string FindParallel(string number, int digits)
     {
         string result = string.Empty;
 
@@ -33,13 +42,13 @@ public class PalindromicPrimeNumber
         return result;
     }
 
-    private static bool HasPalindromicPrime(string number, int digits, int i, out string palindromicPrime)
+    private bool HasPalindromicPrime(string number, int digits, int i, out string palindromicPrime)
     {
         palindromicPrime = string.Empty;
         var subNumber = number.Substring(i, digits);
         ulong.TryParse(subNumber, out ulong result);
 
-        if (PalindromicNumber.IsPalindrome(subNumber) && PrimeNumber.IsPrimeNumber(result))
+        if (_palindromicNumber.IsPalindrome(subNumber) && _primeNumber.IsPrimeNumber(result))
         {
             palindromicPrime = subNumber;
             return true;

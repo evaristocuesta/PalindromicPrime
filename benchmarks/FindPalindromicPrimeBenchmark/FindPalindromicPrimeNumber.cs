@@ -2,12 +2,15 @@
 using Extensions;
 using FindPalindromicPrime;
 using JGSpigotPiDecimals;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace FindPalindromicPrimeBenchmark;
 
 public class FindPalindromicPrimeNumber
 {
-    public string Number;
+    private IPalindromicPrimeNumber? _palindromicPrimeNumber;
+    private string _number = String.Empty;
 
     [Params(100, 1000, 10000, 100000)]
     public int Digits;
@@ -15,18 +18,35 @@ public class FindPalindromicPrimeNumber
     [GlobalSetup]
     public void Setup()
     {
-        Number = Spigot.GetPiDecimals(new Progress<long>()).TakeToString(Digits);
+        var builder = new HostBuilder()
+            .ConfigureServices((hostContext, services) =>
+        {
+            services.AddSingleton<IPalindromicPrimeNumber, PalindromicPrimeNumber>();
+            services.AddSingleton<ISpigot, Spigot>();
+            services.AddSingleton<IPrimeNumber, PrimeNumber>();
+            services.AddSingleton<IPalindromicNumber, PalindromicNumber>();
+        }).UseConsoleLifetime();
+
+        var host = builder.Build();
+        
+        using (var serviceScope = host.Services.CreateScope())
+        {
+            var services = serviceScope.ServiceProvider;
+            var spigot = services.GetRequiredService<ISpigot>();
+            _number = spigot.GetPiDecimals(new Progress<long>()).TakeToString(Digits);
+            _palindromicPrimeNumber = services.GetRequiredService<IPalindromicPrimeNumber>();
+        }
     }
 
     [Benchmark]
-    public string Find()
+    public string? Find()
     {
-        return PalindromicPrimeNumber.Find(Number, 9, new Progress<long>());
+        return _palindromicPrimeNumber?.Find(_number, 9, new Progress<long>());
     }
 
     [Benchmark]
-    public string FindParallel()
+    public string? FindParallel()
     {
-        return PalindromicPrimeNumber.FindParallel(Number, 9);
+        return _palindromicPrimeNumber?.FindParallel(_number, 9);
     }
 }

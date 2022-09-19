@@ -15,7 +15,8 @@ public class PrimeNumberShould
     [InlineData(23)]
     public void ReturnIsPrime(ulong number)
     {
-        Assert.True(PrimeNumber.IsPrimeNumber(number));            
+        IPrimeNumber primeNumber = new PrimeNumber();
+        Assert.True(primeNumber.IsPrimeNumber(number));            
     }
 
     [Theory]
@@ -30,6 +31,7 @@ public class PrimeNumberShould
     [InlineData(333333333)]
     public void ReturnIsNotPrime(ulong number)
     {
-        Assert.False(PrimeNumber.IsPrimeNumber(number));
+        IPrimeNumber primeNumber = new PrimeNumber();
+        Assert.False(primeNumber.IsPrimeNumber(number));
     }
 }

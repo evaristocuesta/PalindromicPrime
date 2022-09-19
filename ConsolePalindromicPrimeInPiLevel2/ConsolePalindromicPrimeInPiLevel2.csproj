@@ -9,12 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Extensions\Extensions.csproj" />
-    <ProjectReference Include="..\FindPalindromicPrime\FindPalindromicPrime.csproj" />
-    <ProjectReference Include="..\JGSpigotPiDecimals\JGSpigotPiDecimals.csproj" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
   </ItemGroup>
 
 </Project>
