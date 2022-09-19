@@ -15,7 +15,6 @@ namespace ConsolePalindromicPrimeInPiLevel1
         private DateTime _lastTimeProgressReported = DateTime.Now;
         private string _file = string.Empty;
         private int _digitsInPi;
-        private int _digitsInPalindromicPrime;
         
         public PalindromicPrimeInPi(IPalindromicPrimeNumber palindromicPrimeNumber, 
             ISpigot spigot)
@@ -33,7 +32,6 @@ namespace ConsolePalindromicPrimeInPiLevel1
         public Task<string> FindAsync(int digitsInPi, int digitsInPalindromicPrime)
         {
             _digitsInPi = digitsInPi;
-            _digitsInPalindromicPrime = digitsInPalindromicPrime;
             var pi = GeneratePi(digitsInPi, _progressPi);
             FindPalindromicPrime(pi, digitsInPalindromicPrime, _progressPalindromicPrime);
             return Task.FromResult(string.Empty);
@@ -127,7 +125,7 @@ namespace ConsolePalindromicPrimeInPiLevel1
                 return;
             }
 
-            Console.Write($"\rSearching palindromic prime... - {e * 100 / _digitsInPalindromicPrime}%");
+            Console.Write($"\rSearching palindromic prime... - {e * 100 / _digitsInPi}%");
             _lastTimeProgressReported = now;
         }
     }

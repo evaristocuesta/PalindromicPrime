@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using FindPalindromicPrime;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 namespace ConsolePalindromicPrimeInPiLevel2;
@@ -13,6 +14,9 @@ internal class Startup
             services.AddHttpClient();
             services.AddSingleton<IPiService, PiService>();
             services.AddSingleton<IPalindromicPrimeInPi, PalindromicPrimeInPi>();
+            services.AddSingleton<IPrimeNumber, PrimeNumber>();
+            services.AddSingleton<IPalindromicNumber, PalindromicNumber>();
+            services.AddSingleton<IPalindromicPrimeNumber, PalindromicPrimeNumber>();
         }).UseConsoleLifetime();
 
         return builder.Build();

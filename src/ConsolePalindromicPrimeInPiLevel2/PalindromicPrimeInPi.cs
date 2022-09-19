@@ -1,26 +1,54 @@
-﻿namespace ConsolePalindromicPrimeInPiLevel2;
+﻿using FindPalindromicPrime;
+
+namespace ConsolePalindromicPrimeInPiLevel2;
 
 public class PalindromicPrimeInPi : IPalindromicPrimeInPi
 {
     private readonly IPiService _piService;
+    private readonly IPalindromicPrimeNumber _palindromicPrimeNumber;
+    private readonly Progress<long> _progressPalindromicPrime;
 
-    public PalindromicPrimeInPi(IPiService piService)
+    private DateTime _lastTimeProgressReported = DateTime.Now;
+    private int _digitsInPi;
+
+    public PalindromicPrimeInPi(IPiService piService, 
+        IPalindromicPrimeNumber palindromicPrimeNumber)
     {
         _piService = piService;
+        _palindromicPrimeNumber = palindromicPrimeNumber;
+
+        _progressPalindromicPrime = new Progress<long>();
     }
 
     public async Task<string?> FindAsync(int digits)
     {
-        bool found = false;
-        int i = 0;
-        PiResponse? result = new();
+        long i = 2000000;
 
-        while (!found)
+        while (true)
         {
-            result = await _piService.GetPiDecimalsAsync(i, 1000);
-            i += 1000 - digits;
+            var response = await _piService.GetPiDecimalsAsync(i, 1000);
+            var palindromicPrime = _palindromicPrimeNumber.Find(response?.Content, digits, _progressPalindromicPrime);
+            UpdateProgress(i);
+
+            if (!string.IsNullOrEmpty(palindromicPrime))
+            {
+                return palindromicPrime;
+            }
+
+            i += 1000 - digits - 1;
+        }
+    }
+
+    private void UpdateProgress(long progress)
+    {
+        var now = DateTime.Now;
+
+        if (now.Subtract(_lastTimeProgressReported).Seconds <= 1)
+        {
+            return;
         }
 
-        return result?.Content;
+        Console.Write($"\rSearching palindromic prime... - {progress}");
+        _lastTimeProgressReported = now;
     }
 }

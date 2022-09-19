@@ -13,7 +13,7 @@ public class PiService : IPiService
         _httpFactory = httpFactory;
     }
 
-    public async Task<PiResponse?> GetPiDecimalsAsync(int start, int numDigits)
+    public async Task<PiResponse?> GetPiDecimalsAsync(long start, int numDigits)
     {
         var client = _httpFactory.CreateClient();
         client.BaseAddress = new Uri("https://api.pi.delivery/v1/");

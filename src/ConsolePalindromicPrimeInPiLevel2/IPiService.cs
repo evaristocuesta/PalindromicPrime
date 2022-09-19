@@ -2,5 +2,5 @@
 
 public interface IPiService
 {
-    Task<PiResponse?> GetPiDecimalsAsync(int start, int numDigits);
+    Task<PiResponse?> GetPiDecimalsAsync(long start, int numDigits);
 }

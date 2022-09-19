@@ -11,7 +11,7 @@ using (var serviceScope = host.Services.CreateScope())
     {
         var service = services.GetRequiredService<IPalindromicPrimeInPi>();
         var number = await service.FindAsync(21);
-        Console.WriteLine(number);
+        Console.WriteLine($"Palindromic prime number found: {number} - {DateTime.Now.ToLongTimeString()}");
     }
     catch (Exception)
     {
