@@ -1,10 +1,9 @@
 ﻿using Extensions;
 using FindPalindromicPrime;
 using JGSpigotPiDecimals;
-using static System.Net.Mime.MediaTypeNames;
 
 DateTime lastTimeProgressReported = DateTime.Now;
-const int DIGITS = 200000;
+const int DIGITS = 100000;
 string path = $"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}/palindromic-prime-pi/";
 string file = $"pi-{DIGITS}.txt";
 
