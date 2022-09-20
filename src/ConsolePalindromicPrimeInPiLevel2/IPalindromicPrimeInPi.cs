@@ -2,5 +2,5 @@
 
 public interface IPalindromicPrimeInPi
 {
-    Task<string?> FindAsync(int digits);
+    Task<string?> FindAsync(int start, int digits);
 }
