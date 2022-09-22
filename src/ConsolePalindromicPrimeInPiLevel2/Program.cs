@@ -9,9 +9,20 @@ using (var serviceScope = host.Services.CreateScope())
 
     try
     {
+        DateTime dateTime = DateTime.Now;
         var service = services.GetRequiredService<IPalindromicPrimeInPi>();
-        var number = await service.FindAsync(0, 21);
-        Console.WriteLine($"Palindromic prime number found: {number} - {DateTime.Now.ToLongTimeString()}");
+        var number = await service.FindFromFileAsync("D:\\Pi\\Pi-4.txt", 23);
+        Console.WriteLine(DateTime.Now.Subtract(dateTime).TotalMilliseconds);
+
+        if (string.IsNullOrWhiteSpace(number))
+        {
+            Console.WriteLine("Palindromic prime number not found");
+        }
+        else
+        {
+            Console.WriteLine($"Palindromic prime number found: {number} - {DateTime.Now.ToLongTimeString()}");
+        }
+
     }
     catch (Exception)
     {

@@ -13,6 +13,9 @@ public class PrimeNumberShould
     [InlineData(17)]
     [InlineData(19)]
     [InlineData(23)]
+    [InlineData(318272813)]
+    [InlineData(1020776770201)]
+    [InlineData(176860696068671)]
     public void ReturnIsPrime(ulong number)
     {
         IPrimeNumber primeNumber = new PrimeNumber();
@@ -29,6 +32,8 @@ public class PrimeNumberShould
     [InlineData(27)]
     [InlineData(33)]
     [InlineData(333333333)]
+    [InlineData(1020776770202)]
+    [InlineData(176860696068675)]
     public void ReturnIsNotPrime(ulong number)
     {
         IPrimeNumber primeNumber = new PrimeNumber();

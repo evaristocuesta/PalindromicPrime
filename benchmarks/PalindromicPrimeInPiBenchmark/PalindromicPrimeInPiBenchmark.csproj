@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BenchmarkDotNet" Version="0.13.2" />
+    <PackageReference Include="BenchmarkDotNet.Annotations" Version="0.13.2" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\ConsolePalindromicPrimeInPiLevel2\ConsolePalindromicPrimeInPiLevel2.csproj" />
+    <ProjectReference Include="..\..\src\JGSpigotPiDecimals\JGSpigotPiDecimals.csproj" />
+  </ItemGroup>
+
+</Project>

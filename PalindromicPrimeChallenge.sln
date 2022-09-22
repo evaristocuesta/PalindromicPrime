@@ -27,6 +27,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsolePalindromicPrimeInPi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsolePalindromicPrimeInPiLevel2", "src\ConsolePalindromicPrimeInPiLevel2\ConsolePalindromicPrimeInPiLevel2.csproj", "{B29AFE8C-E26F-4375-9B78-3EE3E16C1894}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PalindromicPrimeInPiBenchmark", "benchmarks\PalindromicPrimeInPiBenchmark\PalindromicPrimeInPiBenchmark.csproj", "{043EA172-BC9D-4142-934B-85C1D5DBEEB0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{B29AFE8C-E26F-4375-9B78-3EE3E16C1894}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B29AFE8C-E26F-4375-9B78-3EE3E16C1894}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B29AFE8C-E26F-4375-9B78-3EE3E16C1894}.Release|Any CPU.Build.0 = Release|Any CPU
+		{043EA172-BC9D-4142-934B-85C1D5DBEEB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{043EA172-BC9D-4142-934B-85C1D5DBEEB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{043EA172-BC9D-4142-934B-85C1D5DBEEB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{043EA172-BC9D-4142-934B-85C1D5DBEEB0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -83,6 +89,7 @@ Global
 		{168BE49D-82ED-471A-AC26-9784F63A0FA5} = {4D7F5BE9-968D-4220-8209-F96582EAF1A3}
 		{57B0C7CF-54F8-4BC5-9F8B-B6DC104B4234} = {4D7F5BE9-968D-4220-8209-F96582EAF1A3}
 		{B29AFE8C-E26F-4375-9B78-3EE3E16C1894} = {4D7F5BE9-968D-4220-8209-F96582EAF1A3}
+		{043EA172-BC9D-4142-934B-85C1D5DBEEB0} = {8992EBD8-9DEE-47D5-80DA-06D6E6012952}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EAF6368D-5C7B-4C2B-B92F-744DB2A69D56}

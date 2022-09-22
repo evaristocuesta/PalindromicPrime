@@ -1,7 +1,9 @@
-﻿namespace FindPalindromicPrime
+﻿using System.Numerics;
+
+namespace FindPalindromicPrime
 {
     public interface IPrimeNumber
     {
-        bool IsPrimeNumber(ulong n);
+        bool IsPrimeNumber(BigInteger n);
     }
 }

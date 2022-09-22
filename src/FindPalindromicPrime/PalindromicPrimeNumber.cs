@@ -1,4 +1,6 @@
-﻿namespace FindPalindromicPrime;
+﻿using System.Numerics;
+
+namespace FindPalindromicPrime;
 
 public class PalindromicPrimeNumber : IPalindromicPrimeNumber
 {
@@ -46,9 +48,8 @@ public class PalindromicPrimeNumber : IPalindromicPrimeNumber
     {
         palindromicPrime = string.Empty;
         var subNumber = number.Substring(i, digits);
-        ulong.TryParse(subNumber, out ulong result);
 
-        if (_palindromicNumber.IsPalindrome(subNumber) && _primeNumber.IsPrimeNumber(result))
+        if (_palindromicNumber.IsPalindrome(subNumber) && _primeNumber.IsPrimeNumber(BigInteger.Parse(subNumber)))
         {
             palindromicPrime = subNumber;
             return true;
