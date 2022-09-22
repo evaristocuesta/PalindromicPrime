@@ -11,7 +11,7 @@ using (var serviceScope = host.Services.CreateScope())
     {
         DateTime dateTime = DateTime.Now;
         var service = services.GetRequiredService<IPalindromicPrimeInPi>();
-        var number = await service.FindFromFileAsync("D:\\Pi\\Pi-4.txt", 23);
+        var number = await service.FindFromFileAsync("D:\\Pi\\Pi-4.txt", 21);
         Console.WriteLine(DateTime.Now.Subtract(dateTime).TotalMilliseconds);
 
         if (string.IsNullOrWhiteSpace(number))
